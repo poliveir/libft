@@ -14,20 +14,15 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	char c;
+	long long	nbr;
 
-	if (n == -2147483648)
-		write(fd, "-2147483648", 11);
-	else
+	nbr = n;
+	if (nbr < 0)
 	{
-		if (n < 0)
-		{
-			write(fd, "-", 1);
-			n = -n;
-		}
-		if (n > 9)
-			ft_putnbr_fd(n / 10, fd);
-		c = n % 10 + '0';
-		write(fd, &c, 1);
+		write(fd, "-", 1);
+		nbr = -nbr;
 	}
+	if (nbr > 9)
+		ft_putnbr_fd(nbr / 10, fd);
+	ft_putchar_fd("0123456789"[nbr % 10], fd);
 }

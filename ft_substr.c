@@ -12,30 +12,28 @@
 
 #include "libft.h"
 
-char			*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*ptr;
+	size_t	length;
 	size_t	i;
 
 	if (!s)
 		return (NULL);
-	if (start > ft_strlen(s))
+	length = ft_strlen(s);
+	if (start > length)
 		return (ft_strdup(""));
-	if (len > ft_strlen(s))
-		len = ft_strlen(s);
-	if ((start + len) < (ft_strlen(s) + 1))
-		if (!(ptr = (char*)malloc(len + 1)))
-			return (NULL);
-	if ((start + len) >= (ft_strlen(s) + 1))
-		if (!(ptr = (char*)malloc(len)))
-			return (NULL);
+	if (len > length)
+		len = length;
+	if ((start + len) < (length + 1))
+		ptr = (char *)malloc(len + 1);
+	else
+		ptr = (char *)malloc(len);
+	if (!ptr)
+		return (NULL);
 	i = 0;
-	while (i < len && s[start] != '\0')
-	{
-		ptr[i] = s[start];
-		i++;
-		start++;
-	}
+	while (i < len && s[start])
+		ptr[i++] = s[start++];
 	ptr[i] = '\0';
 	return (ptr);
 }

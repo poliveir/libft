@@ -23,32 +23,19 @@ static size_t
 static size_t
 	ft_count_str(char const *s, char c)
 {
-	size_t i;
-	size_t n_s;
+	size_t	i;
+	size_t	n_s;
 
 	i = 0;
 	n_s = 0;
 	while (s[i] != '\0')
 	{
-		if (ft_find_char(s[i + 1], c) == 1 &&
-			ft_find_char(s[i], c) == 0)
+		if (ft_find_char(s[i + 1], c)
+			&& !ft_find_char(s[i], c))
 			n_s++;
 		i++;
 	}
 	return (n_s);
-}
-
-static void
-	ft_str_cpy(char const *s, char *ptr, size_t i, size_t n)
-{
-	size_t j;
-
-	j = 0;
-	while (n < i)
-	{
-		ptr[j++] = s[n++];
-	}
-	ptr[j] = '\0';
 }
 
 static char
@@ -56,22 +43,22 @@ static char
 {
 	size_t	m;
 	char	*str;
+	int		j;
 
 	m = 0;
-	if (!(str = (char*)malloc((i - n) + 1)))
+	str = (char *)malloc((i - n) + 1);
+	if (!str)
 	{
 		while (ptr[m])
-		{
 			free(ptr[m++]);
-		}
 		free(ptr);
 		return (NULL);
 	}
-	else
-	{
-		ft_str_cpy(s, str, i, n);
-		return (str);
-	}
+	j = 0;
+	while (n < i)
+		str[j++] = s[n++];
+	str[j] = '\0';
+	return (str);
 }
 
 char
@@ -86,7 +73,8 @@ char
 	m = 0;
 	if (!s)
 		return (NULL);
-	if (!(ptr = (char **)malloc(8 * ((ft_count_str(s, c)) + 1))))
+	ptr = (char **)malloc(8 * ((ft_count_str(s, c)) + 1));
+	if (!ptr)
 		return (NULL);
 	while (s[i] != '\0')
 	{
@@ -94,8 +82,7 @@ char
 		while (ft_find_char(s[i], c) == 0)
 			i++;
 		if ((i - n) != 0)
-			if (!(ptr[m++] = ft_clean(s, i, n, ptr)))
-				return (NULL);
+			ptr[m++] = ft_clean(s, i, n, ptr);
 		if (s[i] != '\0')
 			i++;
 	}

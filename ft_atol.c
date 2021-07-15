@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: poliveir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/10 18:38:38 by poliveir          #+#    #+#             */
-/*   Updated: 2021/06/29 11:23:16 by poliveir         ###   ########.fr       */
+/*   Created: 2021/07/02 19:29:19 by poliveir          #+#    #+#             */
+/*   Updated: 2021/07/02 19:29:26 by poliveir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static int	ft_iswspace(char c)
 		return (0);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atol(const char *str)
 {
-	int	sign;
-	int	nbr;
+	int		sign;
+	long	nbr;
 
 	while (ft_iswspace(*str))
 		str++;

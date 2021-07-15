@@ -6,7 +6,7 @@
 /*   By: poliveir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 17:12:00 by poliveir          #+#    #+#             */
-/*   Updated: 2021/03/08 11:55:40 by poliveir         ###   ########.fr       */
+/*   Updated: 2021/07/03 00:43:57 by poliveir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct	s_list
+typedef struct s_list
 {
 	void			*content;
+	int				index;
 	struct s_list	*next;
 }				t_list;
 
@@ -38,6 +39,8 @@ int				ft_isdigit(int c);
 int				ft_isalpha(int c);
 
 int				ft_atoi(const char *str);
+
+long			ft_atol(const char *str);
 
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 
@@ -87,7 +90,7 @@ char			**ft_split(char const *s, char c);
 char			*ft_itoa(int n);
 
 char			*ft_strmapi(char const *s,
-						char (*f)(unsigned int, char));
+					char (*f)(unsigned int, char));
 
 void			ft_putchar_fd(char c, int fd);
 

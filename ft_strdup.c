@@ -14,22 +14,17 @@
 
 static void	ft_strcpy(char *dst, const char *src)
 {
-	int i;
-
-	i = 0;
-	while (src[i] != '\0')
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
+	while (*src)
+		*dst++ = *src++;
+	*dst = '\0';
 }
 
-char		*ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
-	char *ptr;
+	char	*ptr;
 
-	if (!(ptr = (char*)(malloc((sizeof(char) * ft_strlen(s1)) + 1))))
+	ptr = (char *)malloc((sizeof(char) * ft_strlen(s1)) + 1);
+	if (!ptr)
 		return (NULL);
 	else
 		ft_strcpy(ptr, s1);
